@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Convert Jupyter Notebooks to Databricks Notebooks
-      uses: rafaelvp-db/github-action-jupyter-to-databricks@v0.3
+      uses: rafaelvp-db/github-action-jupyter-to-databricks@v0.4
       with:
         inputPath: example/jupyter
         outputPath: example/databricks
