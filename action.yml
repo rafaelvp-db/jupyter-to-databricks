@@ -26,7 +26,6 @@ runs:
     - name: Convert Jupyter Notebooks to Databricks format
       id: get-square
       run: |
-        python src/bryckster.py
-          --input_path ${{ inputs.inputPath }}
-          --output_path ${{ inputs.outputPath }}
+        mkdir -p ${{ inputs.outputPath }}
+        python src/bryckster.py --input_path ${{ inputs.inputPath }} --output_path ${{ inputs.outputPath }}
       shell: bash
