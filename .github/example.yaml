@@ -3,6 +3,9 @@ name: lint
 on:
   push:
     branches: [example]
+    inputs:
+      inputPath: example/jupyter
+      outputPath: example/databricks
 
 jobs:
   lint:
@@ -10,3 +13,4 @@ jobs:
     steps:
     - name: Convert Jupyter Notebooks to Databricks Notebooks
       uses: rafaelvp-db/github-action-jupyter-to-databricks@v0.1
+      input
