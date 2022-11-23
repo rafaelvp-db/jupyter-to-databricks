@@ -1,8 +1,9 @@
 # action.yaml
 name: Convert Jupyter Notebooks to Databricks Notebooks
 author: https://www.github.com/rafaelvp-db
-icon: book
-color: gray-dark
+branding:
+  icon: book
+  color: gray-dark
 description: |
   Simple action that converts Jupyter .ipynb files into
   Databricks Python notebooks (.py)
