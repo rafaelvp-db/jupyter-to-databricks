@@ -1,0 +1,12 @@
+name: lint
+
+on:
+  push:
+    branches: [example]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Convert Jupyter Notebooks to Databricks Notebooks
+      uses: rafaelvp-db/github-action-jupyter-to-databricks@v0.1
