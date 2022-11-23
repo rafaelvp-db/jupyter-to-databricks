@@ -37,7 +37,10 @@ runs:
         mkdir -p ${{ inputs.outputPath }}
         python src/bryckster.py run --input_path ${{ inputs.inputPath }} --output_path ${{ inputs.outputPath }}
       shell: bash
-    - uses: actions/upload-artifact@v3
-      with:
-        name: databricks-notebooks
-        path: ${{ inputs.outputPath }}
+    - name: Commit
+      run: |
+        git config --global user.email "$EMAIL"
+        git config --global user.name "$NAME"
+        git add ${{ inputs.outputPath }}
+        git commit -m "Convert to Databricks"
+        git push origin ${{ github.head_ref || github.ref_name }}
