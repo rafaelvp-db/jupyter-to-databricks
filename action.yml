@@ -44,3 +44,4 @@ runs:
         git add ${{ inputs.outputPath }}
         git commit -m "Convert to Databricks"
         git push origin ${{ github.head_ref || github.ref_name }}
+      shell: bash
