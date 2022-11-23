@@ -6,6 +6,7 @@ color: gray-dark
 description: |
   Simple action that converts Jupyter .ipynb files into
   Databricks Python notebooks (.py)
+
 inputs:
   inputPath:
     description: 'Relative path to the folder containing Jupyter notebooks'
@@ -13,6 +14,11 @@ inputs:
   outputPath:
     description: 'Relative path to the folder to which DB notebooks will be output'
     required: true
+
+env:
+  NAME: 'github-actions[bot]'
+  EMAIL: 'github-actions[bot]@users.noreply.github.com'
+
 runs:
   using: 'composite'
 
@@ -31,3 +37,7 @@ runs:
         mkdir -p ${{ inputs.outputPath }}
         python src/bryckster.py run --input_path ${{ inputs.inputPath }} --output_path ${{ inputs.outputPath }}
       shell: bash
+    - user: actions/upload-artifact@v3
+      with:
+        name: databricks-notebooks
+        path: ${{ inputs.outputPath }}
