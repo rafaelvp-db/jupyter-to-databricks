@@ -37,7 +37,7 @@ runs:
         mkdir -p ${{ inputs.outputPath }}
         python src/bryckster.py run --input_path ${{ inputs.inputPath }} --output_path ${{ inputs.outputPath }}
       shell: bash
-    - user: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v3
       with:
         name: databricks-notebooks
         path: ${{ inputs.outputPath }}
