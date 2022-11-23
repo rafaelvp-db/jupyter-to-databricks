@@ -29,5 +29,5 @@ runs:
       id: get-square
       run: |
         mkdir -p ${{ inputs.outputPath }}
-        python src/bryckster.py --input_path ${{ inputs.inputPath }} --output_path ${{ inputs.outputPath }}
+        python src/bryckster.py run --input_path ${{ inputs.inputPath }} --output_path ${{ inputs.outputPath }}
       shell: bash
