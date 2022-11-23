@@ -3,9 +3,6 @@ name: lint
 on:
   push:
     branches: [example]
-    inputs:
-      inputPath: example/jupyter
-      outputPath: example/databricks
 
 jobs:
   lint:
