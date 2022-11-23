@@ -1,3 +1,3 @@
 # Python Github Action
 
-Returns square of the number passed via action
+Convert Jupyter Notebooks to Databricks Notebooks

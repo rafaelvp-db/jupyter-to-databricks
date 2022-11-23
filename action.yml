@@ -1,31 +1,30 @@
 # action.yaml
-name: 'Custom Github Action'
-description: 'A Github Action that takes an input and returns the square of the number'
+name: Convert Jupyter Notebooks to Databricks Notebooks
+author: https://www.github.com/rafaelvp-db
+description: |
+  Simple action that converts Jupyter .ipynb files into
+  Databricks Python notebooks (.py)
 inputs:
-  num:
-    description: 'Enter a number'
+  inputPath:
+    description: 'Relative path to the folder containing Jupyter notebooks'
     required: true
-    default: "1"
-outputs:
-  num_squared:
-    description: 'Square of the input'
-    # need to specify the extra `value` field for `composite` actions
-    value: ${{ steps.get-square.outputs.num_squared }}
+  outputPath:
+    description: 'Relative path to the folder to which DB notebooks will be output'
+    required: true
 runs:
   using: 'composite'
   steps:
     - name: Install Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: '3.8.7'
     - name: Install Dependencies
       run: pip install -r requirements.txt
       shell: bash
-    - name: Pass Inputs to Shell
-      run: |
-          echo "INPUT_NUM=${{ inputs.num }}" >> $GITHUB_ENV
-      shell: bash
-    - name: Fetch the number's square
+    - name: Convert Jupyter Notebooks to Databricks format
       id: get-square
-      run: python src/get_num_square.py
+      run: |
+        python src/bryckster.py
+          --input_path ${{ inputs.inputPath }}
+          --output_path ${{ inputs.outputPath }}
       shell: bash
