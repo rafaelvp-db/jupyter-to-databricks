@@ -36,11 +36,13 @@ runs:
     - name: Commit
       run: |
         if [ -z "$(git diff --exit-code)" ]; then
+          echo "No notebooks were converted, exiting..."
+        else
+          echo "New notebooks were converted; committing new notebooks..." &&
           git config --global user.email 'github-actions[bot]@users.noreply.github.com' &&
           git config --global user.name 'github-actions[bot]' &&
           git add ${{ inputs.outputPath }} &&
           git commit -m "Convert to Databricks" &&
           git push origin ${{ github.head_ref || github.ref_name }}
-        else echo "No notebooks were converted, exiting..."
         fi
       shell: bash
